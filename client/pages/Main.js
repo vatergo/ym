@@ -46,6 +46,7 @@ function Main(props) {
 
     const geoError = (er) => {
         setLoading(false);
+        setWeatherData([]);
         setError('Произошла ошибка получения местоположения');
         switch (er.code) {
             case 1:
@@ -64,17 +65,18 @@ function Main(props) {
 
     const getWeatherForecast = () => {
         setLoading(true);
+        setError('');
         navigator.geolocation.getCurrentPosition(({ coords }) => {
             axios.get(`/api/weather?lattlong=${coords.latitude},${coords.longitude}`)
                 .then(({ data }) => {
                     setCity(data.title);
                     setCurrentDay(0);
                     setWeatherData(data.weather);
-                    setError('');
                     setLoading(false);
                 })
                 .catch((er) => {
                     setLoading(false);
+                    setWeatherData([]);
                     setError('Произошла ошибка получения информации о погоде');
                     console.error(er)
                 });
