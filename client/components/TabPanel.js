@@ -19,6 +19,10 @@ const useStyles = makeStyles(() => ({
         height: 48,
         width: 48,
     },
+    smallIcon: {
+        height: 32,
+        width: 32,
+    },
     wind: {
         display: 'flex',
     },
@@ -27,6 +31,7 @@ const useStyles = makeStyles(() => ({
 function TabPanel({ value, index, data }) {
     const classes = useStyles();
     const { applicable_date, max_temp, min_temp, the_temp, weather_state_abbr, wind_speed, wind_direction } = data;
+    
     return (
         <div className={classes.root} hidden={value !== index} >
             {value === index && (
@@ -36,11 +41,11 @@ function TabPanel({ value, index, data }) {
                     </Typography>
                     <div className={classes.info}>
                         <div className={classes.currentInfo}>
-                            <Typography variant='h2'>
+                            <Typography variant={window.innerWidth < 400 ? 'h4' : 'h2'}>
                                 {Math.round(the_temp)}°
                             </Typography>
                             <div
-                                className={classes.icon}
+                                className={window.innerWidth < 400 ? classes.smallIcon : classes.icon}
                                 style={{ background: `url("https://www.metaweather.com/static/img/weather/${weather_state_abbr}.svg")` }}>
                             </div>
                         </div>

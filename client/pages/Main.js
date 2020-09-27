@@ -27,6 +27,7 @@ const useStyles = makeStyles(() => ({
         padding: 16,
         color: '#70757a',
         position: 'relative',
+        maxWidth: '96vw',
     },
     iconRefresh: {
         position: 'absolute',
@@ -69,6 +70,7 @@ function Main(props) {
                     setCity(data.title);
                     setCurrentDay(0);
                     setWeatherData(data.weather);
+                    setError('');
                     setLoading(false);
                 })
                 .catch((er) => {
@@ -96,13 +98,17 @@ function Main(props) {
                 {weatherData.map((item, i) => (
                     <TabPanel value={currentDay} index={i} key={item.id} data={item} />
                 ))}
-                <CustomTabs value={currentDay} onChange={(e, value) => setCurrentDay(value)} >
+                <CustomTabs
+                    value={currentDay}
+                    onChange={(e, value) => setCurrentDay(value)}
+                    variant="scrollable"
+                    scrollButtons="off">
                     {weatherData.map((item) => (
                         <CustomTab key={item.id} label={<TabElement data={item} />} />
                     ))}
                 </CustomTabs>
             </Paper>}
-            {error && <Typography variant="h6">{error}</Typography>}
+            {error && <Typography variant="caption" display="block">{error}</Typography>}
         </>
     );
 }
