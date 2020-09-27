@@ -1,4 +1,4 @@
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import { Box, makeStyles, Tooltip, Typography } from '@material-ui/core';
 import { ArrowDownward } from '@material-ui/icons';
 import React from 'react';
 
@@ -30,8 +30,8 @@ const useStyles = makeStyles(() => ({
 
 function TabPanel({ value, index, data }) {
     const classes = useStyles();
-    const { applicable_date, max_temp, min_temp, the_temp, weather_state_abbr, wind_speed, wind_direction } = data;
-    
+    const { applicable_date, max_temp, min_temp, the_temp, weather_state_abbr, wind_speed, wind_direction, wind_direction_compass } = data;
+
     return (
         <div className={classes.root} hidden={value !== index} >
             {value === index && (
@@ -60,7 +60,9 @@ function TabPanel({ value, index, data }) {
                                 <Typography variant='body2'>
                                     Ветер: {Math.round(wind_speed * 0.44704)} м/с
                                 </Typography>
-                                <ArrowDownward fontSize="small" style={{ transform: `rotate(${wind_direction}deg)` }} />
+                                <Tooltip title={wind_direction_compass}>
+                                    <ArrowDownward fontSize="small" style={{ transform: `rotate(${wind_direction}deg)` }} />
+                                </Tooltip>
                             </div>
                         </div>
                     </div>

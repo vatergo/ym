@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, CircularProgress, IconButton, makeStyles, Paper, Tab, Tabs, Typography, withStyles, } from '@material-ui/core';
+import { Button, CircularProgress, IconButton, makeStyles, Paper, Tab, Tabs, Tooltip, Typography, withStyles, } from '@material-ui/core';
 import axios from 'axios';
 import TabPanel from '../components/TabPanel';
 import TabElement from '../components/TabElement';
@@ -100,9 +100,11 @@ function Main(props) {
                 <Typography variant="h6">
                     {city}
                 </Typography>
-                <IconButton className={classes.iconRefresh} onClick={getWeatherForecast} size='small'>
-                    <Refresh fontSize='inherit' />
-                </IconButton>
+                <Tooltip title='Обновить'>
+                    <IconButton className={classes.iconRefresh} onClick={getWeatherForecast} size='small'>
+                        <Refresh fontSize='inherit' />
+                    </IconButton>
+                </Tooltip>
                 {weatherData.map((item, i) => (
                     <TabPanel value={currentDay} index={i} key={item.id} data={item} />
                 ))}
