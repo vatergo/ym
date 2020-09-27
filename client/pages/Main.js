@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Button, CircularProgress, makeStyles, Paper, Tab, Tabs, Typography, withStyles, } from '@material-ui/core';
+import { Button, CircularProgress, IconButton, makeStyles, Paper, Tab, Tabs, Typography, withStyles, } from '@material-ui/core';
 import axios from 'axios';
 import TabPanel from '../components/TabPanel';
 import TabElement from '../components/TabElement';
+import { Refresh } from '@material-ui/icons';
 
 const CustomTabs = withStyles(() => ({
     indicator: {
@@ -25,6 +26,12 @@ const useStyles = makeStyles(() => ({
     root: {
         padding: 16,
         color: '#70757a',
+        position: 'relative',
+    },
+    iconRefresh: {
+        position: 'absolute',
+        top: 16,
+        right: 16,
     },
 }));
 
@@ -83,6 +90,9 @@ function Main(props) {
                 <Typography variant="h6">
                     {city}
                 </Typography>
+                <IconButton className={classes.iconRefresh} onClick={getWeatherForecast} size='small'>
+                    <Refresh fontSize='inherit' />
+                </IconButton>
                 {weatherData.map((item, i) => (
                     <TabPanel value={currentDay} index={i} key={item.id} data={item} />
                 ))}
