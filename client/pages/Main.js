@@ -47,18 +47,21 @@ function Main(props) {
     const geoError = (er) => {
         setLoading(false);
         setWeatherData([]);
-        setError(`Произошла ошибка получения местоположения. Код: ${er.code}`);
         switch (er.code) {
             case 1:
+                setError(`Ошибка GPS: Доступ запрещен`);
                 console.error('Permission denied');
                 break;
             case 2:
+                setError(`Ошибка GPS: Позиция недоступна`);
                 console.error('Position unavailable');
                 break;
             case 3:
+                setError(`Ошибка GPS: Время вышло`);
                 console.error('Timed out');
                 break;
             default:
+                setError(`Ошибка GPS: Неизвестная ошибка`);
                 console.error('Unknown error');
         }
     }
