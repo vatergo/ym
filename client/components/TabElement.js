@@ -2,8 +2,6 @@ import React from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
-    root: {
-    },
     icon: {
         margin: '8px 0',
         height: 32,
