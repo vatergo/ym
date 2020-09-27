@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Main from './Main';
-import Error from './Error';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -28,7 +28,7 @@ function Layout() {
                 </>
                     : <>
                         <Route path='/error' exact>
-                            <Error />
+                            <Typography variant="caption" display="block">Ваше устройство не поддерживает GPS</Typography>
                         </Route>
                         <Redirect to='/error' />
                     </>}

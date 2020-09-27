@@ -47,7 +47,7 @@ function Main(props) {
     const geoError = (er) => {
         setLoading(false);
         setWeatherData([]);
-        setError('Произошла ошибка получения местоположения');
+        setError(`Произошла ошибка получения местоположения. Код: ${er.code}`);
         switch (er.code) {
             case 1:
                 console.error('Permission denied');
