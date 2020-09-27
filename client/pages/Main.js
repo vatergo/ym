@@ -83,7 +83,11 @@ function Main(props) {
                     setError('Произошла ошибка получения информации о погоде');
                     console.error(er)
                 });
-        }, geoError);
+        }, geoError, {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        });
 
     }
 
