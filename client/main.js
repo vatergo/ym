@@ -1,8 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Layout from './pages/Layout';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-ReactDOM.render(<Router basename={'/'}>
+import Layout from './pages/Layout'
+
+ReactDOM.render(
+  <Router basename={'/'}>
     <Layout />
-</Router>, document.getElementById('mount-point'));
+  </Router>,
+  document.getElementById('mount-point')
+)

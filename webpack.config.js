@@ -1,13 +1,13 @@
-const webpack = require('webpack');
-const path = require('path');
+const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
-  entry: "./client/main.js",
-  mode: "development",
+  entry: './client/main.js',
+  mode: 'development',
   output: {
     path: path.resolve(__dirname, 'public/build/'),
-    filename: "./bundle.js",
-    publicPath: "build/"
+    filename: './bundle.js',
+    publicPath: 'build/',
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'public/'),
@@ -16,11 +16,12 @@ module.exports = {
     watchContentBase: true,
     progress: true,
     historyApiFallback: true,
+    writeToDisk: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:3000'
+        target: 'http://localhost:3000',
       },
-    }
+    },
   },
 
   module: {
@@ -29,19 +30,17 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader"
-        }
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.css$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" }]
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
       {
         test: /\.(png|svg|jpg|gif|woff|woff2|ttf)$/,
-        use: "url-loader?name=[name].[ext]"
-      }
-    ]
-  }
-};
+        use: 'url-loader?name=[name].[ext]',
+      },
+    ],
+  },
+}
